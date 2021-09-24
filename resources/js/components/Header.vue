@@ -8,6 +8,8 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="isLoggedIn">
                     <router-link to="/dashboard" class="nav-item nav-link">Dashboard</router-link>
+                    <router-link to="/users" class="nav-item nav-link">Users</router-link>
+                    <router-link to="/greetings" class="nav-item nav-link">Greetings</router-link>
                     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>
