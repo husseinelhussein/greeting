@@ -4,6 +4,7 @@ import Home from './../pages/Home';
 import Register from './../pages/Register';
 import Login from './../pages/Login';
 import Dashboard from './../pages/Dashboard';
+import Users from './../pages/Users';
 
 export const routes = [
     {
@@ -25,6 +26,11 @@ export const routes = [
         name: 'dashboard',
         path: '/dashboard',
         component: Dashboard
+    },
+    {
+        name: 'users',
+        path: '/users',
+        component: Users
     },
 ];
 

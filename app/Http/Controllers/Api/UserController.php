@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\UserResource;
+use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,12 +13,19 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function index() {
+        $this->authorize('index', Auth::user());
+        return UserResource::collection(User::with('role')->paginate());
+
+    }
     public function register(Request $request){
         try {
+            $role = Role::where('name', 'user')->first();
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
+            $user->role_id = $role?$role->id: null;
             $user->save();
             $success = true;
             $message = 'User registered successfully';
@@ -33,6 +43,7 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+        $stop = null;
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
