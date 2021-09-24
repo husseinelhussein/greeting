@@ -5,6 +5,8 @@ import Register from './../pages/Register';
 import Login from './../pages/Login';
 import Dashboard from './../pages/Dashboard';
 import Users from './../pages/Users';
+import Greeting from "../pages/greeting/index";
+import CreateGreeting from "../pages/greeting/create";
 
 export const routes = [
     {
@@ -32,6 +34,17 @@ export const routes = [
         path: '/users',
         component: Users
     },
+
+    {
+        name: 'greetings',
+        path: '/greetings',
+        component: Greeting,
+    },
+    {
+        name: 'create',
+        path: "/greetings/create",
+        component: CreateGreeting
+    }
 ];
 
 const router = createRouter({
