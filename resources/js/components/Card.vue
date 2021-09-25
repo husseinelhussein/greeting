@@ -4,6 +4,9 @@
             <h5 class="card-title">{{card.title}}</h5>
             <p class="card-text">{{card.text}}</p>
             <p class="card-text"><small>{{card.created_at}}</small></p>
+            <p v-if="edit">
+                <router-link :to="'/edit/' + card.id" class="btn btn-primary">Edit</router-link>
+            </p>
         </div>
     </div>
 </template>
@@ -11,7 +14,7 @@
 <script>
 export default {
     name: "Card",
-    props: ['card'],
+    props: ['card', 'edit'],
 
     methods: {
         getBackground(color){
@@ -26,6 +29,6 @@ export default {
             }
             return actualColor;
         }
-    }
+    },
 }
 </script>
