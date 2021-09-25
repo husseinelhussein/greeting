@@ -21,11 +21,24 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
-        $roles = Role::all()->pluck('name')->toArray();
-        $adminExists = in_array('admin', $roles);
-        $userExists = in_array('user', $roles);
         return [
-            'name' => $adminExists? ($userExists? $this->faker->name(): "user"): "admin",
+            'name' => $this->faker->name,
         ];
+    }
+
+    public function admin(){
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'admin',
+            ];
+        });
+    }
+
+    public function user(){
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'user',
+            ];
+        });
     }
 }
