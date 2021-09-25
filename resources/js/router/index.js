@@ -6,6 +6,7 @@ import Login from './../pages/Login';
 import Dashboard from './../pages/Dashboard';
 import Users from './../pages/Users';
 import Create from "../pages/cards/create";
+import Edit from "../pages/cards/edit";
 import Received from "../pages/cards/received";
 import Sent from "../pages/cards/Sent";
 
@@ -39,6 +40,11 @@ export const routes = [
         name: 'create',
         path: "/create",
         component: Create
+    },
+    {
+        name: 'edit',
+        path: "/edit/:id",
+        component: Edit
     },
     {
         name: 'received',

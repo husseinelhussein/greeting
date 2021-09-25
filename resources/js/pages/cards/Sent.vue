@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md-3" v-for="card of cards" v-if="cards.length">
-            <Card :card="card"></Card>
+        <div class="col-md-3" v-for="card of cards" v-if="cards.length && !loading">
+            <Card :card="card" :edit="card.sender_id === user.id"></Card>
         </div>
         <div class="col-md-12 text-center" v-else-if="loading">
             <div class="spinner-border text-primary" role="status">
@@ -33,7 +33,11 @@ export default {
         return {
             cards: [],
             loading: true,
+            user: null,
         }
+    },
+    created() {
+        this.user = window.Laravel.user;
     },
     mounted() {
         axios.get('/sanctum/csrf-cookie').then(response => {

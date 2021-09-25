@@ -84,7 +84,7 @@ class GreetingController extends TestCase
     }
 
     /**
-     * A basic test example.
+     * Asserts that a card can be created using the api.
      *
      * @return void
      */
@@ -104,5 +104,29 @@ class GreetingController extends TestCase
         $response = $this->post('/api/greetings', $data);
 
         $response->assertCreated();
+    }
+
+    /**
+     * Asserts that cards can be updated using the api.
+     *
+     * @return void
+     */
+    public function test_greetings_can_be_updated()
+    {
+        Role::factory()->admin()->create();
+        Role::factory()->user()->create();
+        $user = User::factory()->create();
+        Sanctum::actingAs($user, ['create-greetings']);
+
+        /** @var Greeting $sent */
+        Greeting::factory(30)->create(['sender_id' => $user->id]);
+        $sent = $user->sent()->get()->first();
+
+        $data = [
+            'text' => 'Hello World',
+            'background' => "yellow",
+        ];
+        $response = $this->put('/api/greetings/' . $sent->id, $data);
+        $response->assertOk();
     }
 }
