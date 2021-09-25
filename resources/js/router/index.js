@@ -5,10 +5,9 @@ import Register from './../pages/Register';
 import Login from './../pages/Login';
 import Dashboard from './../pages/Dashboard';
 import Users from './../pages/Users';
-import Greeting from "../pages/greeting/index";
-import CreateGreeting from "../pages/greeting/create";
-import ReceivedGreetings from "../pages/greeting/received";
-import Sent from "../pages/greeting/Sent";
+import Create from "../pages/cards/create";
+import Received from "../pages/cards/received";
+import Sent from "../pages/cards/Sent";
 
 export const routes = [
     {
@@ -38,13 +37,13 @@ export const routes = [
     },
     {
         name: 'create',
-        path: "/greetings/create",
-        component: CreateGreeting
+        path: "/create",
+        component: Create
     },
     {
         name: 'received',
         path: "/received",
-        component: ReceivedGreetings
+        component: Received
     },
     {
         name: 'sent',
