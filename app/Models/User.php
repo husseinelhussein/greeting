@@ -51,6 +51,9 @@ class User extends Authenticatable
     public function received(){
         return $this->hasMany(Greeting::class, 'receiver_id');
     }
+    public function sent(){
+        return $this->hasMany(Greeting::class, 'sender_id');
+    }
 
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->diffForHumans();

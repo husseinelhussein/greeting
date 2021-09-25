@@ -16,6 +16,7 @@
                         <ul class="dropdown-menu" aria-labelledby="cardsMenu">
                             <router-link to="/received" class="dropdown-item nav-item nav-link">Received</router-link>
                             <li><hr class="dropdown-divider"></li>
+                            <router-link to="/sent" class="dropdown-item nav-item nav-link">Sent</router-link>
                         </ul>
                     </li>
                     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>

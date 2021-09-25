@@ -55,7 +55,30 @@ class GreetingController extends TestCase
         $response = $this->get('/api/greetings/received');
         $response->assertOk();
         $content = json_decode($response->baseResponse->getContent(), true);
-        $this->assertEquals($received->count(), count($content['data']));
+        $this->assertGreaterThan(0, count($content['data']));
+    }
+
+    /**
+     * Tests listing the sent greetings.
+     *
+     * @return void
+     */
+    public function test_sent_cards_list_can_be_retrieved()
+    {
+        $users = User::factory(2)->create();
+        Greeting::factory(30)->create();
+        /** @var User $user */
+        $user = $users->first();
+        $sent = $user->sent()->get();
+        $this->assertGreaterThan(0, $sent->count());
+        Sanctum::actingAs(
+            $user,
+            ['view-greetings']
+        );
+        $response = $this->get('/api/sent');
+        $response->assertOk();
+        $content = json_decode($response->baseResponse->getContent(), true);
+        $this->assertGreaterThan(0, count($content['data']));
     }
 
     /**

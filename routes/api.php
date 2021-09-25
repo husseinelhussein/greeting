@@ -19,4 +19,5 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
 Route::get('greetings/received', [GreetingController::class, 'received'])->middleware('auth:sanctum');
+Route::get('sent', [GreetingController::class, 'sent'])->middleware('auth:sanctum');
 Route::apiResource('greetings', GreetingController::class)->middleware('auth:sanctum');
