@@ -22,7 +22,16 @@
                 <p class="form-text text-danger" v-if="error('text')">{{error('text')}}</p>
             </div>
         </div>
-
+        <div class="mb-3 row">
+            <label for="background" class="col-sm-2 col-form-label">Background</label>
+            <div class="col-sm-10">
+                <select class="form-select" id="background" name="background" aria-label="Background" v-model="background">
+                    <option value="yellow" selected>Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="red">Red</option>
+                </select>
+            </div>
+        </div>
         <div class="mb-3 row">
             <button type="submit" class="btn btn-primary col-md-4" @click="create">Create</button>
         </div>
@@ -37,6 +46,7 @@ export default {
             title: "",
             text: "",
             receiver: "",
+            background: "yellow",
             errors: null,
         }
     },

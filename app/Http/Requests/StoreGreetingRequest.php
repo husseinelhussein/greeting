@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreGreetingRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class StoreGreetingRequest extends FormRequest
             'receiver' => 'required|email|exists:users,email',
             'title' => 'required',
             'text' => 'required',
-
+            'background' => ['required', Rule::in(['green', 'yellow', 'red'])],
         ];
     }
 }

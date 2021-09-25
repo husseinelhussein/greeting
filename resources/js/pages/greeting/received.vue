@@ -1,12 +1,11 @@
 <template>
     <div class="row">
         <div class="col-md-3" v-for="greeting of greetings" v-if="greetings.length">
-            <div class="card">
-                <img src="https://via.placeholder.com/420x300" class="card-img-top" alt="...">
+            <div class="card text-white" :class="'bg-' + getBackground(greeting.background)">
                 <div class="card-body">
                     <h5 class="card-title">{{greeting.title}}</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-muted">{{greeting.created_at}}</small></p>
+                    <p class="card-text">{{greeting.text}}</p>
+                    <p class="card-text"><small>{{greeting.created_at}}</small></p>
                 </div>
             </div>
         </div>
@@ -46,5 +45,20 @@ export default {
         }
         next();
     },
+
+    methods: {
+        getBackground(color){
+            let actualColor = "warning";
+            switch (color){
+                case "green":
+                    actualColor = "success";
+                    break;
+                case "red":
+                    actualColor = "danger";
+                    break;
+            }
+            return actualColor;
+        }
+    }
 }
 </script>

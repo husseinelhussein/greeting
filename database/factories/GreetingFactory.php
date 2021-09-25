@@ -28,6 +28,7 @@ class GreetingFactory extends Factory
             'text' => $this->faker->paragraph,
             'sender_id' => $this->faker->randomElement($users),
             'receiver_id' => $this->faker->randomElement($users),
+            'background' => $this->faker->randomElement(['green', 'yellow', 'red']),
         ];
     }
 }

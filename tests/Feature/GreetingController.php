@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Greeting;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Collection;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -65,6 +65,8 @@ class GreetingController extends TestCase
      */
     public function test_sent_cards_list_can_be_retrieved()
     {
+        Role::factory()->admin()->create();
+        Role::factory()->user()->create();
         $users = User::factory(2)->create();
         Greeting::factory(30)->create();
         /** @var User $user */
@@ -88,6 +90,8 @@ class GreetingController extends TestCase
      */
     public function test_greetings_can_be_created()
     {
+        Role::factory()->admin()->create();
+        Role::factory()->user()->create();
         $user = User::factory()->create();
         Sanctum::actingAs($user, ['create-greetings']);
         $receiver = User::factory()->create(['email' => 'receiver@test.com']);
@@ -95,6 +99,7 @@ class GreetingController extends TestCase
             'receiver' => $receiver->email,
             'title' => 'Hello',
             'text' => 'Hello World',
+            'background' => "yellow",
         ];
         $response = $this->post('/api/greetings', $data);
 

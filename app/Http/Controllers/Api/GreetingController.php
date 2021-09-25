@@ -63,6 +63,7 @@ class GreetingController extends Controller
         $greeting->text = $input['text'];
         $greeting->sender_id = Auth::user()->id;
         $greeting->receiver_id = $receiver->id;
+        $greeting->background = $input['background'];
         $greeting->save();
         return new GreetingResource($greeting);
     }
