@@ -40,7 +40,7 @@
 
 <script>
 export default {
-    name: "CreateGreeting",
+    name: "CreateCard",
     data() {
         return {
             title: "",

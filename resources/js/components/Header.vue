@@ -8,7 +8,6 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="isLoggedIn">
                     <router-link to="/dashboard" class="nav-item nav-link">Dashboard</router-link>
-                    <router-link to="/users" class="nav-item nav-link">Users</router-link>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="cardsMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cards
@@ -19,6 +18,8 @@
                             <router-link to="/sent" class="dropdown-item nav-item nav-link">Sent</router-link>
                         </ul>
                     </li>
+                    <router-link to="/create" class="nav-item nav-link">Create</router-link>
+                    <router-link to="/users" class="nav-item nav-link">Users</router-link>
                     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>

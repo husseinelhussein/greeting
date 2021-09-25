@@ -1,13 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-3" v-for="card of cards" v-if="cards.length">
-            <div class="card text-white" :class="'bg-' + getBackground(card.background)">
-                <div class="card-body">
-                    <h5 class="card-title">{{card.title}}</h5>
-                    <p class="card-text">{{card.text}}</p>
-                    <p class="card-text"><small>{{card.created_at}}</small></p>
-                </div>
-            </div>
+            <Card :card="card"></Card>
         </div>
         <div class="col-md-12 text-center" v-else-if="loading">
             <div class="spinner-border text-primary" role="status">
@@ -20,7 +14,7 @@
                 <p class="card-text">
                     <small class="text-muted">
                         But here is the good news, you can
-                        <router-link to="/greetings/create">send a card</router-link>
+                        <router-link to="/create">send a card</router-link>
                         to any member!
                     </small>
                 </p>
@@ -31,8 +25,10 @@
 </template>
 
 <script>
+import Card from "../../components/Card";
 export default {
     name: "SentCards",
+    components: {Card},
     data() {
         return {
             cards: [],

@@ -1,13 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md-3" v-for="greeting of greetings" v-if="greetings.length">
-            <div class="card text-white" :class="'bg-' + getBackground(greeting.background)">
-                <div class="card-body">
-                    <h5 class="card-title">{{greeting.title}}</h5>
-                    <p class="card-text">{{greeting.text}}</p>
-                    <p class="card-text"><small>{{greeting.created_at}}</small></p>
-                </div>
-            </div>
+        <div class="col-md-3" v-for="card of cards" v-if="cards.length">
+            <Card :card="card"></Card>
         </div>
         <div class="col-md-12 text-center" v-else>
             <div class="card-body">
@@ -19,11 +13,13 @@
 </template>
 
 <script>
+import Card from "../../components/Card";
 export default {
-    name: "ReceivedGreetings",
+    name: "ReceivedCard",
+    components: {Card},
     data() {
         return {
-            greetings: [],
+            cards: [],
         }
     },
     mounted() {
@@ -31,7 +27,7 @@ export default {
             axios.get('api/greetings/received')
                 .then(response => {
                     if (response.data) {
-                        this.greetings = response.data.data;
+                        this.cards = response.data.data;
                     } else {
                         this.error = response.data.message
                     }
@@ -44,21 +40,6 @@ export default {
             window.location.href = "/";
         }
         next();
-    },
-
-    methods: {
-        getBackground(color){
-            let actualColor = "warning";
-            switch (color){
-                case "green":
-                    actualColor = "success";
-                    break;
-                case "red":
-                    actualColor = "danger";
-                    break;
-            }
-            return actualColor;
-        }
     }
 }
 </script>
