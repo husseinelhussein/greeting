@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Greeting;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Collection;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -100,6 +99,7 @@ class GreetingController extends TestCase
             'receiver' => $receiver->email,
             'title' => 'Hello',
             'text' => 'Hello World',
+            'background' => "yellow",
         ];
         $response = $this->post('/api/greetings', $data);
 
