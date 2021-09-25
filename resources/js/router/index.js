@@ -7,6 +7,7 @@ import Dashboard from './../pages/Dashboard';
 import Users from './../pages/Users';
 import Greeting from "../pages/greeting/index";
 import CreateGreeting from "../pages/greeting/create";
+import ReceivedGreetings from "../pages/greeting/received";
 
 export const routes = [
     {
@@ -34,16 +35,15 @@ export const routes = [
         path: '/users',
         component: Users
     },
-
-    {
-        name: 'greetings',
-        path: '/greetings',
-        component: Greeting,
-    },
     {
         name: 'create',
         path: "/greetings/create",
         component: CreateGreeting
+    },
+    {
+        name: 'received',
+        path: "/received",
+        component: ReceivedGreetings
     }
 ];
 

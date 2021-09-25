@@ -9,7 +9,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="isLoggedIn">
                     <router-link to="/dashboard" class="nav-item nav-link">Dashboard</router-link>
                     <router-link to="/users" class="nav-item nav-link">Users</router-link>
-                    <router-link to="/greetings" class="nav-item nav-link">Greetings</router-link>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="cardsMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cards
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="cardsMenu">
+                            <router-link to="/received" class="dropdown-item nav-item nav-link">Received</router-link>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
                     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>

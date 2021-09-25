@@ -25,6 +25,18 @@ class GreetingController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function received()
+    {
+        $user = Auth::user();
+        $greetings = $user->received()->orderBy('created_at', 'desc')->paginate();
+        return GreetingResource::collection($greetings);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  StoreGreetingRequest  $request

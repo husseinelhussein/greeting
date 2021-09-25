@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function received(){
+        return $this->hasMany(Greeting::class, 'receiver_id');
+    }
+
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->diffForHumans();
     }
