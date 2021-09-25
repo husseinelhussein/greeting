@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGreetingRequest;
+use App\Http\Requests\UpdateGreetingRequest;
 use App\Http\Resources\GreetingResource;
 use App\Models\Greeting;
 use App\Models\User;
@@ -71,24 +72,30 @@ class GreetingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Greeting  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Greeting $greeting)
     {
-        //
+        $this->authorize('show', $greeting);
+        return new GreetingResource($greeting);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateGreetingRequest $request
+     * @param Greeting $greeting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGreetingRequest $request, Greeting $greeting)
     {
-        //
+        $this->authorize('update', $greeting);
+        $input = $request->validated();
+        $greeting->text = $input['text'];
+        $greeting->background = $input['background'];
+        $greeting->update();
+        return new GreetingResource($greeting);
     }
 
     /**
